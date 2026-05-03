@@ -21,7 +21,7 @@ def get_descriptions():
 
     #MovieDescriptions.objects.all().delete()
 
-    for page in range(1, NUMBER_OF_PAGES):
+    for page in range(502, NUMBER_OF_PAGES):
         formated_url = url.format(start_date, api_key, page)
         print(formated_url)
         r = requests.get(formated_url)
@@ -34,11 +34,14 @@ def get_descriptions():
             md.description = film['overview']
             md.genres = film['genre_ids']
             if None != md.imdb_id:
+                # if md.id > 2650:
                 md.save()
 
-        time.sleep(1)
+        # time.sleep(1)
 
-        print("{}: {}".format(page, r.json()))
+        print('-----------------------------')
+        print("{}/{}:\t{}%".format(page, NUMBER_OF_PAGES, 100.0*page/NUMBER_OF_PAGES))
+        print('-----------------------------')
 
 
 def save_as_csv():
@@ -59,6 +62,7 @@ def save_as_csv():
             f['title'] = film['title']
             f['description'] = film['overview']
             f['genres'] = film['genre_ids']
+
             films.append(f)
         print("{}: {}".format(page, r.json()))
 

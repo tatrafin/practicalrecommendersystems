@@ -65,5 +65,5 @@ def populate():
 
 if __name__ == '__main__':
     print("Starting MovieGeeks Population script...")
-    delete_db()
+    # delete_db()
     populate()
