@@ -31,3 +31,5 @@ stop-words
 tqdm
 urllib3
 pyLDAvis
+nltk
+psycopg2
